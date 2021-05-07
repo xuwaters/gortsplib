@@ -169,11 +169,6 @@ func (cc *ClientConn) backgroundPlayUDP() error {
 						if now.Sub(lft) < cc.c.ReadTimeout {
 							return false
 						}
-
-						lft = time.Unix(atomic.LoadInt64(cct.udpRTCPListener.lastFrameTime), 0)
-						if now.Sub(lft) < cc.c.ReadTimeout {
-							return false
-						}
 					}
 					return true
 				}()
